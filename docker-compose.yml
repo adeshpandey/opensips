@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  opensips:
+    build: .
+    image: adeshpandey/opensips
+    ports:
+      - "${SIP_PORT}:${SIP_PORT}/udp"
+      - "${SIP_PORT}:${SIP_PORT}/tcp"
+    environment:
+      SIP_PORT: ${SIP_PORT}
+      PUBLIC_IP: ${PUBLIC_IP}
+      DB_URL: ${DB_DRIVER}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+    restart: unless-stopped
+
+
